@@ -2,6 +2,9 @@ import { provideEditingConfig } from 'scrivito'
 import { Homepage } from './HomepageObjClass'
 import { classNameToThumbnail } from '../../utils/classNameToThumbnail'
 
+// @ts-expect-error scrivito-sam
+import { assistPopertiesGroup } from 'scrivito-sam'
+
 provideEditingConfig(Homepage, {
   title: 'Homepage',
   thumbnail: classNameToThumbnail('Homepage'),
@@ -37,6 +40,7 @@ provideEditingConfig(Homepage, {
       ],
       key: 'site-settings-group',
     },
+    assistPopertiesGroup,
   ],
   properties: ['title', 'metaDataDescription'],
 })

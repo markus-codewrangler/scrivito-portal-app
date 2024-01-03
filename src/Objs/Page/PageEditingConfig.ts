@@ -2,6 +2,9 @@ import { provideEditingConfig } from 'scrivito'
 import { Page } from './PageObjClass'
 import { classNameToThumbnail } from '../../utils/classNameToThumbnail'
 
+// @ts-expect-error scrivito-sam
+import { assistPopertiesGroup } from 'scrivito-sam'
+
 provideEditingConfig(Page, {
   title: 'Page',
   thumbnail: classNameToThumbnail('Page'),
@@ -33,4 +36,5 @@ provideEditingConfig(Page, {
     'linkIcon',
     'requireUserLogin',
   ],
+  propertiesGroups: [assistPopertiesGroup],
 })

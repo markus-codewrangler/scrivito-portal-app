@@ -1,5 +1,5 @@
 import dns from 'dns'
-import fs from 'fs'
+import fs from 'fs/promises'
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'path'
@@ -29,9 +29,28 @@ export default defineConfig(({ mode }) => {
       'import.meta.env.ENABLE_NEOLETTER_FORM_BUILDER_SUBSCRIPTION_FEATURE':
         JSON.stringify(env.ENABLE_NEOLETTER_FORM_BUILDER_SUBSCRIPTION_FEATURE),
     },
+    // https://github.com/vitejs/vite/discussions/3448
+    esbuild: {
+      loader: 'tsx',
+      include: /src\/.*\.[jt]sx?$/,
+      exclude: [],
+    },
     optimizeDeps: {
       include: ['scrivito'],
       force: true,
+      esbuildOptions: {
+        plugins: [
+          {
+            name: 'load-js-files-as-jsx',
+            setup(build) {
+              build.onLoad({ filter: /src\/.*\.js$/ }, async (args) => ({
+                loader: 'jsx',
+                contents: await fs.readFile(args.path, 'utf8'),
+              }))
+            },
+          },
+        ],
+      },
     },
     plugins: [react(), writeProductionHeaders(outDir)],
     preview: {
@@ -93,7 +112,7 @@ function writeProductionHeaders(outDir: string) {
     name: 'write-production-headers',
     apply: 'build' as const,
     async writeBundle() {
-      await fs.promises.writeFile(
+      await fs.writeFile(
         resolve(__dirname, outDir, '_headers'),
         productionHeaders(),
       )
