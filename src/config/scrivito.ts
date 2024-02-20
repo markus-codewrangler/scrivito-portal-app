@@ -11,7 +11,7 @@ export function configureScrivito() {
   if (!tenant) return
 
   const config: Parameters<typeof configure>[0] = {
-    adoptUi: true,
+    adoptUi: 'http://localhost:8090',
     autoConvertAttributes: true,
     baseUrlForSite,
     optimizedWidgetLoading: true,
@@ -21,6 +21,7 @@ export function configureScrivito() {
     tenant,
     // @ts-expect-error // TODO: Remove later on
     unstable: {
+      assetUrlBase: 'http://localhost:8091',
       trustedUiOrigins: [
         'http://localhost:8090',
         'https://*.netlify.app',
