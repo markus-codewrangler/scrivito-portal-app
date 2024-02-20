@@ -2,7 +2,7 @@ import { configure } from 'scrivito'
 
 export function configureScrivito() {
   const config: Parameters<typeof configure>[0] = {
-    adoptUi: true,
+    adoptUi: 'http://localhost:8090',
     autoConvertAttributes: true,
     optimizedWidgetLoading: true,
     strictSearchOperators: true,
@@ -11,6 +11,7 @@ export function configureScrivito() {
     jrRestApiEndpoint: `${window.location.origin}/jr-api`,
     // @ts-expect-error // TODO: Remove later on
     unstable: {
+      assetUrlBase: 'http://localhost:8091',
       trustedUiOrigins: [
         'http://localhost:8090',
         'https://*.netlify.app',
