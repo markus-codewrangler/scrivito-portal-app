@@ -40,7 +40,7 @@ export function provideLocalStorageDataClass(
             ? items
             : items.filter((item) =>
                 Object.entries(filters).every(
-                  ([filterAttribute, filterValue]) =>
+                  ([filterAttribute, { value: filterValue }]) =>
                     item[filterAttribute] === filterValue ||
                     (filterValue === 'true' &&
                       item[filterAttribute] === true) ||
@@ -51,8 +51,10 @@ export function provideLocalStorageDataClass(
 
         if (params.search()) throw new Error('search not implemented!')
         const orderedItems = orderItems(filteredItems, params.order())
+        const count = params.count() ? orderedItems.length : undefined
 
-        return { results: orderedItems }
+        // @ts-expect-error remove after update to Scrivito 1.40.x
+        return { results: orderedItems, count }
       },
 
       async get(id: string): Promise<DataItem | null> {

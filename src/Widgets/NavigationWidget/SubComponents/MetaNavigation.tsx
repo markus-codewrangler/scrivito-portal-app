@@ -3,9 +3,10 @@ import { NavigationWidgetInstance } from '../NavigationWidgetClass'
 import { NavItem } from './NavItem'
 import Nav from 'react-bootstrap/Nav'
 import { ObjIconAndTitle } from '../../../Components/ObjIconAndTitle'
-import { containsItems, numberOfCartItems } from '../../../Data/CartItem/Cart'
+import { containsItems } from '../../../Data/CartItem/Cart'
 import { HomepageInstance } from '../../../Objs/Homepage/HomepageObjClass'
 import { CurrentUserDropdown } from './CurrentUserDropdown'
+import { CartItem } from '../../../Data/CartItem/CartItemDataClass'
 
 export const MetaNavigation = connect(function MetaNavigation({
   root,
@@ -29,6 +30,8 @@ export const MetaNavigation = connect(function MetaNavigation({
 
   const siteCartPage = root.get('siteCartPage')
   const showCart = !!siteCartPage && containsItems()
+  // @ts-expect-error remove once #all() is released as public (beta)
+  const count = CartItem.all().count()
 
   return (
     <div className="navbar-meta">
@@ -54,7 +57,7 @@ export const MetaNavigation = connect(function MetaNavigation({
               >
                 <ObjIconAndTitle obj={siteCartPage} />{' '}
                 <span className="badge rounded-pill text-bg-secondary">
-                  {numberOfCartItems()}
+                  {count}
                 </span>
               </Nav.Link>
             </Nav.Item>
