@@ -40,12 +40,26 @@ export function provideLocalStorageDataClass(
             ? items
             : items.filter((item) =>
                 Object.entries(filters).every(
-                  ([filterAttribute, filterValue]) =>
-                    item[filterAttribute] === filterValue ||
-                    (filterValue === 'true' &&
-                      item[filterAttribute] === true) ||
-                    (filterValue === 'false' &&
-                      item[filterAttribute] === false),
+                  ([filterAttribute, { value: filterValue, opCode }]) => {
+                    if (opCode === 'neq') {
+                      return (
+                        (typeof item[filterAttribute] !== 'boolean' &&
+                          item[filterAttribute] !== filterValue) ||
+                        (filterValue === 'true' &&
+                          item[filterAttribute] !== true) ||
+                        (filterValue === 'false' &&
+                          item[filterAttribute] !== false)
+                      )
+                    }
+
+                    return (
+                      item[filterAttribute] === filterValue ||
+                      (filterValue === 'true' &&
+                        item[filterAttribute] === true) ||
+                      (filterValue === 'false' &&
+                        item[filterAttribute] === false)
+                    )
+                  },
                 ),
               )
 
