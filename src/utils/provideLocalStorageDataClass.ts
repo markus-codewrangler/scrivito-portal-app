@@ -42,20 +42,28 @@ export function provideLocalStorageDataClass(
                 Object.entries(filters).every(
                   ([filterAttribute, { value: filterValue, opCode }]) => {
                     const itemValue = item[filterAttribute]
+                    const filterValueAsNumber = Number(filterValue)
 
                     if (opCode === 'neq') {
                       return (
                         (typeof itemValue !== 'boolean' &&
+                          typeof itemValue !== 'number' &&
                           itemValue !== filterValue) ||
                         (filterValue === 'true' && itemValue !== true) ||
-                        (filterValue === 'false' && itemValue !== false)
+                        (filterValue === 'false' && itemValue !== false) ||
+                        (typeof itemValue === 'number' &&
+                          !isNaN(filterValueAsNumber) &&
+                          Math.abs(itemValue - filterValueAsNumber) >= 0.01)
                       )
                     }
 
                     return (
                       itemValue === filterValue ||
                       (filterValue === 'true' && itemValue === true) ||
-                      (filterValue === 'false' && itemValue === false)
+                      (filterValue === 'false' && itemValue === false) ||
+                      (typeof itemValue === 'number' &&
+                        !isNaN(filterValueAsNumber) &&
+                        Math.abs(itemValue - filterValueAsNumber) < 0.01)
                     )
                   },
                 ),
