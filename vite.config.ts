@@ -58,6 +58,9 @@ export default defineConfig(({ mode }) => {
       port: 8080,
       strictPort: true,
     },
+    resolve: {
+      dedupe: ['react', 'react-dom'],
+    },
     server: {
       port: 8080,
       strictPort: true,
