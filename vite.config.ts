@@ -55,6 +55,16 @@ export default defineConfig(({ mode }) => {
       port: 8080,
       strictPort: true,
     },
+    resolve: {
+      alias: {
+        // ensure that a shared React instance is used
+        // this is necessary, if package.json references scrivito via "file:"
+        // compare:
+        // https://medium.com/@penx/managing-dependencies-in-a-node-package-so-that-they-are-compatible-with-npm-link-61befa5aaca7
+        react: resolve(__dirname, './node_modules/react'),
+        'react-dom': resolve(__dirname, './node_modules/react-dom'),
+      },
+    },
     server: {
       port: 8080,
       strictPort: true,
