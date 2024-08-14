@@ -1,4 +1,7 @@
 import { provideEditingConfig } from 'scrivito'
+// @ts-expect-error scrivito-sam
+import { assistPopertiesGroup } from 'scrivito-sam'
+
 import { Page } from './PageObjClass'
 import {
   defaultPageEditingConfigAttributes,
@@ -44,7 +47,7 @@ provideEditingConfig(Page, {
     'excludeFromSearch',
     'showAsLandingPage',
   ],
-  propertiesGroups: defaultPagePropertiesGroups,
+  propertiesGroups: [...defaultPagePropertiesGroups, assistPopertiesGroup],
   initialContent: {
     ...defaultPageInitialContent,
     linkIcon: 'bi-rocket-takeoff',

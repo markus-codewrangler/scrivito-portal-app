@@ -1,4 +1,7 @@
 import { provideEditingConfig } from 'scrivito'
+// @ts-expect-error scrivito-sam
+import { assistPopertiesGroup } from 'scrivito-sam'
+
 import { Homepage } from './HomepageObjClass'
 import { SiteColorsPicker } from './SiteColorsPicker'
 import {
@@ -84,6 +87,7 @@ provideEditingConfig(Homepage, {
       ],
       key: 'site-colors-group',
     },
+    assistPopertiesGroup,
     ...defaultPagePropertiesGroups,
   ],
   properties: defaultPageProperties,
