@@ -1,6 +1,9 @@
-import { localStorageQuoteDataClass } from './LocalStorage/localStorageQuoteDataClass'
-import { pisaQuoteDataClass } from './Pisa/pisaQuoteDataClass'
+import { ClientError, provideDataClass } from 'scrivito'
 
-export const Quote = import.meta.env.ENABLE_PISA
-  ? pisaQuoteDataClass()
-  : localStorageQuoteDataClass()
+const callback = () => {
+  throw new ClientError('The configuration was not found', undefined, {}, 400)
+}
+
+export const Quote = provideDataClass('Quote', {
+  connection: { get: callback },
+})
