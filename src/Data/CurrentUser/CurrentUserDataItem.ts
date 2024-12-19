@@ -6,6 +6,11 @@ import { neoletterClient } from '../neoletterClient'
 import { pisaClient } from '../pisaClient'
 import { errorToast } from './errorToast'
 
+export const FooUser = provideDataItem('FooUser', {
+  connection: { get: async () => ({ name: 'Alice' }) },
+  attributes: { name: 'string' },
+})
+
 export const CurrentUser = provideDataItem('CurrentUser', {
   attributes: {
     company: 'string',

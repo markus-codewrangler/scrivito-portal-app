@@ -20,6 +20,7 @@ import { Loading } from '../../Components/Loading'
 const CURRENCY = 'EUR' // ISO 4217 Code
 
 provideComponent(DataLabelWidget, ({ widget }) => {
+  console.log('DataLabelWidgetComponent', widget.get('label'))
   const valueCssClassNames = ['text-multiline']
 
   const valueSize = widget.get('valueSize')
