@@ -5,7 +5,7 @@ function headers(environment: string) {
     'Content-Security-Policy': cspBuilder({
       directives: {
         'base-uri': "'none'",
-        'default-src': ["'self'", 'data:', 'https:', 'wss:'],
+        'default-src': ['http:', "'self'", 'data:', 'https:', 'wss:'],
         'style-src': ["'self'", 'data:', 'https:', 'wss:', "'unsafe-inline'"],
         'script-src': [
           "'self'",

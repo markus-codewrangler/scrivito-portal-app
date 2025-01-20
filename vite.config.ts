@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
       'import.meta.env.SCRIVITO_ROOT_OBJ_ID': JSON.stringify(
         env.SCRIVITO_ROOT_OBJ_ID || 'c2a0aab78be05a4e',
       ),
-      'import.meta.env.ENABLE_PISA': JSON.stringify(true),
+      'import.meta.env.ENABLE_PISA': JSON.stringify(false),
     },
     // https://github.com/vitejs/vite/discussions/3448
     esbuild: {
