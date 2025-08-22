@@ -94,6 +94,10 @@ export default defineConfig(({ mode }) => {
       port: 8080,
       strictPort: true,
       headers: developmentHeaders(),
+      watch: {
+        // Add node_modules folder to watch list
+        ignored: ['!**/node_modules/@justrelate/chatbot/**'],
+      },
       proxy: {
         '/auth': {
           target: 'https://api.justrelate.com/iam/auth',
