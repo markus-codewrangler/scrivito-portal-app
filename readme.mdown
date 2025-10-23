@@ -6,6 +6,16 @@
 
 The Scrivito Portal App shows Scrivito’s features and is a great basis for your own Scrivito website projects.
 
+## Run a local Portal App with a local Chatbot (with live changes)
+
+- Checkout [scrivito_js](https://github.com/infopark/scrivito_js)
+- In the folder above `scrivito_js/` run:
+  - `git clone https://github.com/markus-codewrangler/scrivito-portal-app.git`
+  - `cd scrivito-portal-app`
+  - `git checkout portal-bot-onDevChatbot`
+  - `npm install`
+  - `npm start`
+
 ## Features
 
 Scrivito is a SaaS Content Management Service, built for digital agencies and medium to large sized businesses.
