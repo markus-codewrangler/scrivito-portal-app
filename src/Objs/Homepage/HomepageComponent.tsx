@@ -1,6 +1,10 @@
 import { ContentTag, provideComponent } from 'scrivito'
 import { Homepage } from './HomepageObjClass'
+import { AssistantButtons } from '../../Components/AssistantButtons'
 
 provideComponent(Homepage, ({ page }) => (
-  <ContentTag tag="main" id="main" content={page} attribute="body" />
+  <>
+    <AssistantButtons />
+    <ContentTag tag="main" id="main" content={page} attribute="body" />
+  </>
 ))
