@@ -7,6 +7,12 @@ import { NotFoundErrorPage } from './Components/NotFoundErrorPage'
 import { Toasts } from './Components/Toasts'
 import { DesignAdjustments } from './Components/DesignAdjustments'
 import { SinglePageSite } from './Components/SinglePageSite'
+import { init } from '@justrelate/ai-assistant'
+
+init({
+  botId: '30dd326edd5477b0',
+  onAssistantClose: () => console.log('your are CLOOOOOOOOOSED!!!!!1111'),
+})
 
 export const helmetContext: { helmet?: HelmetServerState } = {}
 
