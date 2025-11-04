@@ -1,25 +1,38 @@
+import { useEffect, useState } from 'react'
 import {
   openNewConversation,
   resumeConversation,
-  subscribeToVisibility,
 } from '@justrelate/ai-assistant'
-import { useEffect, useState } from 'react'
+import { onAssistantClosed } from '../utils/assistantEvents'
 
 export function AssistantButtons() {
   const [assistantVisible, setAssistantVisible] = useState(false)
-  useEffect(() => subscribeToVisibility(setAssistantVisible), [])
+  useEffect(() => onAssistantClosed(() => setAssistantVisible(false)), [])
 
   if (assistantVisible) return null
 
+  const handleClick = (action: () => void) => {
+    setAssistantVisible(true)
+    action()
+  }
+
   return (
     <>
-      <button onClick={() => openNewConversation()}>New Chat</button>
+      <button onClick={() => handleClick(() => openNewConversation())}>
+        New Chat
+      </button>
       <button
-        onClick={() => openNewConversation({ userPrompt: 'What is Scrivito?' })}
+        onClick={() =>
+          handleClick(() =>
+            openNewConversation({ userPrompt: 'What is Scrivito?' }),
+          )
+        }
       >
         New Chat with user prompt
       </button>
-      <button onClick={resumeConversation}>Resume Chat</button>
+      <button onClick={() => handleClick(resumeConversation)}>
+        Resume Chat
+      </button>
     </>
   )
 }

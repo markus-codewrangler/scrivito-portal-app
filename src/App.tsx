@@ -8,8 +8,12 @@ import { NotFoundErrorPage } from './Components/NotFoundErrorPage'
 import { Toasts } from './Components/Toasts'
 import { DesignAdjustments } from './Components/DesignAdjustments'
 import { SinglePageSite } from './Components/SinglePageSite'
+import { notifyAssistantClosed } from './utils/assistantEvents'
 
-init({ botId: '30dd326edd5477b0' })
+init({
+  botId: '30dd326edd5477b0',
+  onAssistantClose: notifyAssistantClosed,
+})
 
 export const helmetContext: { helmet?: HelmetServerState } = {}
 
