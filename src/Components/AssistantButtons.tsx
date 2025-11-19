@@ -1,11 +1,15 @@
 import {
   openNewConversation,
   resumeConversation,
-  useAssistantUIVisible,
+  subscribeToVisibility,
 } from '@justrelate/ai-assistant'
+import { useEffect, useState } from 'react'
 
 export function AssistantButtons() {
-  if (useAssistantUIVisible()) return null
+  const [assistantVisible, setAssistantVisible] = useState(false)
+  useEffect(() => subscribeToVisibility(setAssistantVisible), [])
+
+  if (assistantVisible) return null
 
   return (
     <>
