@@ -53,7 +53,7 @@ export function PortalBot() {
   return (
     <>
       <Chatbot
-        config={{ name: 'PortalBot', systemPrompt, dataTypes }}
+        config={{ systemPrompt, dataTypes }}
         isVisible={showChatbot}
         hide={() => setShowChatbot(false)}
         showHistory
