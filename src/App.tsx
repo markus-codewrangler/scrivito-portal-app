@@ -1,5 +1,6 @@
 import { connect, currentLanguage, CurrentPage } from 'scrivito'
 import { HelmetProvider, HelmetServerState } from '@dr.pogodin/react-helmet'
+import { init } from '@justrelate/ai-assistant'
 
 import { CurrentPageMetadata } from './Components/CurrentPageMetadata'
 import { ErrorBoundary } from './Components/ErrorBoundary'
@@ -7,6 +8,8 @@ import { NotFoundErrorPage } from './Components/NotFoundErrorPage'
 import { Toasts } from './Components/Toasts'
 import { DesignAdjustments } from './Components/DesignAdjustments'
 import { SinglePageSite } from './Components/SinglePageSite'
+
+init({ botId: '30dd326edd5477b0' })
 
 export const helmetContext: { helmet?: HelmetServerState } = {}
 
